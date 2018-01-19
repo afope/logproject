@@ -4,10 +4,14 @@ DBNAME = "news"
 
 title_one = "\nThe three most popular articles of all time"
 title_two = "\nThe three most popular authors of all time"
-title_three = "\nThe days with more than one percent of request that leads to an error"
+title_three = "\nThe days with more than one percent of" +
+"requests that leads to an error"
 
-query_one = "select title, count(*) as views from articles a, log l where a.slug=substring(l.path, 10) group by title order by views desc limit 3;"
-query_two = "select name, sum(views) from title_views_author group by name order by sum desc limit 3;"
+query_one = "select title, count(*) as views from articles a," +
+"log l where a.slug=substring(l.path, 10) group by" +
+"title order by views desc limit 3;"
+query_two = "select name, sum(views) from title_views_author" +
+"group by name order by sum desc limit 3;"
 query_three = "select * from error_view where \"percentage error\">1;"
 
 
