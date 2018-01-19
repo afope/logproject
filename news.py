@@ -18,7 +18,7 @@ query_one = "SELECT title, COUNT(*) as views FROM articles a," \
             "title ORDER BY views desc limit 3;"
 query_two = "SELECT name, SUM(views) FROM title_views_author" \
             " GROUP BY name ORDER BY sum desc limit 3;"
-query_three = "SELECT * FROM error_view WHERE \"percentage error\">1;"
+query_three = "SELECT * FROM error_view WHERE percentage_error > 1;"
 
 
 def get_query_result(query):

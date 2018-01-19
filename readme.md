@@ -33,13 +33,13 @@ No views were created for the first query.
 first view : `CREATE OR REPLACE VIEW article_views as SELECT title, count(*) as views FROM articles a, log l WHERE a.slug = substring(l.path,10) GROUP BY title ORDER BY views;`
 second view : `CREATE OR REPLACE VIEW article_author as SELECT articles.title, authors.name FROM authors, articles WHERE articles.author = authors.id GROUP BY name, title;`
 
-#### the second query (highest error percentage):
+#### the third query (highest error percentage):
 first view : `CREATE OR REPLACE VIEW title_views_author as SELECT * FROM article_views natural join article_author;`
 second view : `CREATE OR REPLACE VIEW error_view as SELECT name, sum(views) FROM title_views_author GROUP BY name ORDER BY sum desc limit 3;`
 
 
 ## contribution
-it's a good example to learn working relational databases using psql and python.
+it's a good example to learn working on relational databases using psql and python.
 
 ## licensing
 this code follows the [mit license](https://github.com/angular/angular.js/blob/master/LICENSE)
