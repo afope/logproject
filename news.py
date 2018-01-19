@@ -27,16 +27,16 @@ def get_query_result(query):
 
 def print_query_result(query_result):
     """Prints query result from first and second queries"""
-    print (query_result[1])
+    print(query_result[1])
     for results in (query_result[0]):
-        print (str(results[0]) + ' - ' + str(results[1]) + ' views')
+        print(str(results[0]) + ' - ' + str(results[1]) + ' views')
 
 
 def print_error_result(error_result):
     """Print query result for third query"""
-    print (error_result[1])
+    print(error_result[1])
     for results in error_result[0]:
-        print (str(results[0]) + ' - ' + str(results[1]) + '%')
+        print(str(results[0]) + ' - ' + str(results[1]) + '%')
 
 
 if __name__ == '__main__':
