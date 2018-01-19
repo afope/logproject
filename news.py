@@ -40,12 +40,10 @@ def print_error_result(error_result):
 
 
 if __name__ == '__main__':
-    # storing all the query results
     most_popular_articles = get_query_result(query_one), title_one
     most_popular_authors = get_query_result(query_two), title_two
     highest_error_days = get_query_result(query_three), title_three
 
-    # printing all the query results
     print_query_result(most_popular_articles)
     print_query_result(most_popular_authors)
     print_error_result(highest_error_days)
