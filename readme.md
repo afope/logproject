@@ -23,19 +23,19 @@ this program analyses log data from a database using queries, which return the t
 
 ## usage
 ### running the code
-* to run the code run the following command in your terminal: `python news.py > text.txt;`
+* to run the code run the following command in your terminal: `python news.py;`
 
 ### the following views were created:
 #### the first query (most popular articles):
 No views were created for the first query.
 
 #### the second query (most popular authors):
-first view : `create view article_views as select title, count(*) as views from articles a, log l where a.slug = substring(l.path,10) group by title order by views;`
-second view : `create view article_author as select articles.title, authors.name from authors, articles where articles.author = authors.id group by name, title;`
+first view : `CREATE OR REPLACE VIEW article_views as SELECT title, count(*) as views FROM articles a, log l WHERE a.slug = substring(l.path,10) GROUP BY title ORDER BY views;`
+second view : `CREATE OR REPLACE VIEW article_author as SELECT articles.title, authors.name FROM authors, articles WHERE articles.author = authors.id GROUP BY name, title;`
 
 #### the second query (highest error percentage):
-first view : `create view title_views_author as select * from article_views natural join article_author;`
-second view : `create view error_view as select name, sum(views) from title_views_author group by name order by sum desc limit 3;`
+first view : `CREATE OR REPLACE VIEW title_views_author as SELECT * FROM article_views natural join article_author;`
+second view : `CREATE OR REPLACE VIEW error_view as SELECT name, sum(views) FROM title_views_author GROUP BY name ORDER BY sum desc limit 3;`
 
 
 ## contribution

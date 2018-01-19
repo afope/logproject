@@ -1,18 +1,24 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""This program analyses the news database for most popular
+articles, most popular authors, and the days in which
+the percentage of requests that return 404 error is more than one"""
+
 import psycopg2
 
 DBNAME = "news"
 
 title_one = "\nThe three most popular articles of all time"
 title_two = "\nThe three most popular authors of all time"
-title_three = "\nThe days with more than one percent of" +
-"requests that leads to an error"
+title_three = "\nThe days with more than one percent of" \
+              " requests that leads to an error"
 
-query_one = "select title, count(*) as views from articles a," +
-"log l where a.slug=substring(l.path, 10) group by" +
-"title order by views desc limit 3;"
-query_two = "select name, sum(views) from title_views_author" +
-"group by name order by sum desc limit 3;"
-query_three = "select * from error_view where \"percentage error\">1;"
+query_one = "SELECT title, COUNT(*) as views FROM articles a," \
+            "log l WHERE a.slug=substring(l.path, 10) GROUP BY " \
+            "title ORDER BY views desc limit 3;"
+query_two = "SELECT name, SUM(views) FROM title_views_author" \
+            " GROUP BY name ORDER BY sum desc limit 3;"
+query_three = "SELECT * FROM error_view WHERE \"percentage error\">1;"
 
 
 def get_query_result(query):
