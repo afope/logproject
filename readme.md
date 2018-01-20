@@ -30,8 +30,8 @@ this program analyses log data from a database using queries, which return the t
 No views were created for the first query.
 
 #### the second query (most popular authors):
-first view : `CREATE OR REPLACE VIEW article_views as SELECT title, count(*) as views FROM articles a, log l WHERE a.slug = substring(l.path,10) GROUP BY title ORDER BY views;`
-second view : `CREATE OR REPLACE VIEW article_author as SELECT articles.title, authors.name FROM authors, articles WHERE articles.author = authors.id GROUP BY name, title;`
+* first view : `CREATE OR REPLACE VIEW article_views as SELECT title, count(*) as views FROM articles a, log l WHERE a.slug = substring(l.path,10) GROUP BY title ORDER BY views;`
+* second view : `CREATE OR REPLACE VIEW article_author as SELECT articles.title, authors.name FROM authors, articles WHERE articles.author = authors.id GROUP BY name, title;`
 
 #### the third query (highest error percentage):
 `CREATE OR REPLACE VIEW error_view as SELECT date(time) as date, round(100.0*sum(case log.status when '200 OK'
