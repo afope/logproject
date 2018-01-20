@@ -1,8 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""This program analyses the news database for most popular
+"""Purpose.
+
+This program analyses the news database for most popular
 articles, most popular authors, and the days in which
-the percentage of requests that return 404 error is more than one"""
+the percentage of requests that return 404 error is more than one.
+
+"""
 
 import psycopg2
 
@@ -15,14 +19,14 @@ title_three = "\nThe days with more than one percent of" \
 
 query_one = "SELECT title, COUNT(*) as views FROM articles a," \
             "log l WHERE a.slug=substring(l.path, 10) GROUP BY " \
-            "title ORDER BY views desc limit 3;"
+            "title ORDER BY views desc limit 3"
 query_two = "SELECT name, SUM(views) FROM title_views_author" \
-            " GROUP BY name ORDER BY sum desc limit 3;"
-query_three = "SELECT * FROM error_view WHERE \"percentage_error\" > 1;"
+            " GROUP BY name ORDER BY sum desc limit 3"
+query_three = "SELECT * FROM error_view WHERE percentage_error > 1"
 
 
 def get_query_result(query):
-    """Gets query results from database"""
+    """Get query results from database."""
     db = psycopg2.connect(database=DBNAME)
     c = db.cursor()
     c.execute(query)
@@ -32,14 +36,14 @@ def get_query_result(query):
 
 
 def print_query_result(query_result):
-    """Prints query result from first and second queries"""
+    """Print query result from first and second queries."""
     print(query_result[1])
     for results in (query_result[0]):
         print(str(results[0]) + ' - ' + str(results[1]) + ' views')
 
 
 def print_error_result(error_result):
-    """Print query result for third query"""
+    """Print query result for third query."""
     print(error_result[1])
     for results in error_result[0]:
         print(str(results[0]) + ' - ' + str(results[1]) + '%')
