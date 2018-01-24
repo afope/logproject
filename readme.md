@@ -32,11 +32,10 @@ No views were created for the first query.
 #### the second query (most popular authors):
 * first view : `CREATE OR REPLACE VIEW article_views as SELECT title, count(*) as views FROM articles a, log l WHERE a.slug = substring(l.path,10) GROUP BY title ORDER BY views;`
 * second view : `CREATE OR REPLACE VIEW article_author as SELECT articles.title, authors.name FROM authors, articles WHERE articles.author = authors.id GROUP BY name, title;`
+* third view : `CREATE OR REPLACE VIEW title_views_author as SELECT * FROM article_views natural join article_author;`
 
 #### the third query (highest error percentage):
-`CREATE OR REPLACE VIEW error_view as SELECT date(time) as date, round(100.0*sum(case log.status when '200 OK'
-then 0 else 1 end)/count(log.status),2) as percentage_error FROM log GROUP BY date                              
-ORDER BY percentage_error desc;`
+`CREATE OR REPLACE VIEW error_view as SELECT date(time) as date, round(100.0*sum(case log.status when '200 OK' then 0 else 1 end)/count(log.status),2) as percentage_error FROM log GROUP BY date                      ORDER BY percentage_error desc;`
 
 
 ## contribution
